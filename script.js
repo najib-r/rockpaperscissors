@@ -12,46 +12,79 @@ function getComputerChoice () {
 
 
 function playRound(playerSelection, computerSelection) {
-    //playerSelection = playerSelection.charAt(0).toUpperCase()+playerSelection.slice(playerSelection.length - 1);
     switch (playerSelection) {
         case "Rock":
             if (computerSelection === "Paper") {
-                return "You Lose! Paper beats Rock";
+                // lose
+                return 0;
             }
             else if (computerSelection === "Rock") {
-                return "Draw!";
+                // draw
+                return 1;
             }
             else {
-                return "You Win! Rock beats Scissors";
+                // win
+                return 2;
             }
             break;
         case "Scissors":
             if (computerSelection === "Paper") {
-                return "You Win! Scissors beats Paper";
+                // win
+                return 2;
             }
             else if (computerSelection === "Scissors") {
-                return "Draw!";
+                // draw
+                return 1;
             }
             else {
-                return "You Lose! Rock beats Scissors";
+                // lose
+                return 0;
             }
             break;
         case "Paper":
             if (computerSelection === "Paper") {
-                return "Draw!";
+                // draw
+                return 1;
             }
             else if (computerSelection === "Rock") {
-                return "You Win! Paper beats Rock";
+                // win
+                return 2;
             }
             else {
-                return "You Lose! Scissors beats Paper";
+                // lose
+                return 0;
             }
             break;
     }
 }
 
-const playerSelection = "Rock";
-const computerSelection = getComputerChoice();
-console.log(`Player choice - ${playerSelection}`);
-console.log(`Computer choice - ${computerSelection}`);
-console.log(playRound(playerSelection, computerSelection));
+
+let playerScore = 0;
+let computerScore = 0;
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("R/P/S: ");
+        playerSelection = playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1).toLowerCase();
+        let computerSelection = getComputerChoice();
+        if (playRound(playerSelection, computerSelection) === 0) {
+            computerScore++;
+            console.log(`You lose. ${computerSelection} beats ${playerSelection}`);
+        }
+        else if (playRound(playerSelection, computerSelection) === 1) {
+            console.log(`Draw. ${playerSelection} and ${computerSelection}`);
+        }
+        else if (playRound(playerSelection, computerSelection) === 2) {
+            playerScore++;
+            console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+        }
+    }
+    if (playerScore > computerScore) {
+        console.log(`You won the Best of 5. Score: ${playerScore} - ${computerScore}`);
+    } 
+    else if (playerScore < computerScore) {
+        console.log(`You lost the Best of 5. Score: ${playerScore} - ${computerScore}`);
+    }
+}
+
+game();
