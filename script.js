@@ -59,9 +59,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
+
 let playerScore = 0;
 let computerScore = 0;
 
+/*
 function game() {
     for (let i = 0; i < 5; i++) {
         let playerSelection = prompt("R/P/S: ");
@@ -88,3 +90,45 @@ function game() {
 }
 
 game();
+*/ 
+
+const button1 = document.getElementById('rock');
+
+button1.addEventListener('click', myFunction);
+
+function myFunction () {
+    playerSelection = button1.textContent;
+    getComputerChoice();
+    console.log(playerSelection);
+}
+
+const button2 = document.getElementById('paper');
+
+button2.addEventListener('click', myFunction2);
+
+function myFunction2 () {
+    playerSelection = button2.textContent;
+    console.log(playerSelection);
+}
+
+const button3 = document.getElementById('scissors');
+
+button3.addEventListener('click', myFunction3);
+
+function myFunction3 () {
+    playerSelection = button3.textContent;
+    console.log(playerSelection);
+}
+
+
+var div = document.createElement('div');
+
+
+/*
+button1.addEventListener("click", myFunction);
+
+function myFunction() {
+  alert ("Hello World!");
+}
+
+*/
