@@ -91,44 +91,69 @@ function game() {
 
 game();
 */ 
+const div = document.getElementById("demo");
 
-const button1 = document.getElementById('rock');
+function round() {
+    let computerSelection = getComputerChoice();
+    if (playRound(playerSelection, computerSelection) === 0) {
+        computerScore++;
+        div.innerHTML += `You lose. ${computerSelection} beats ${playerSelection}`
+        linebreak = document.createElement("br");
+        div.appendChild(linebreak);
+    }
+    else if (playRound(playerSelection, computerSelection) === 1) {
+        div.innerHTML += `Draw. ${playerSelection} and ${computerSelection}`;
+        linebreak = document.createElement("br");
+        div.appendChild(linebreak);
+    }
+    else if (playRound(playerSelection, computerSelection) === 2) {
+        playerScore++;
+        div.innerHTML += `You win! ${playerSelection} beats ${computerSelection}`;
+        linebreak = document.createElement("br");
+        div.appendChild(linebreak);
+    }
+
+    if (playerScore === 5 || computerScore === 5) {
+        if (playerScore > computerScore) {
+            div.innerHTML += "You won by reaching 5 points! Points reset to 0.";
+            playerScore = 0;
+            computerScore = 0;
+        }
+        else {
+            div.innerHTML += "Computer reached 5 points. You lose. Points reset to 0.";
+            playerScore = 0;
+            computerScore = 0;
+        }
+    }
+}
+
+const button1 = document.getElementById('Rock');
 
 button1.addEventListener('click', myFunction);
 
 function myFunction () {
     playerSelection = button1.textContent;
-    getComputerChoice();
-    console.log(playerSelection);
+    round();
 }
 
-const button2 = document.getElementById('paper');
+const button2 = document.getElementById('Paper');
 
 button2.addEventListener('click', myFunction2);
 
 function myFunction2 () {
     playerSelection = button2.textContent;
-    console.log(playerSelection);
+    round();
 }
 
-const button3 = document.getElementById('scissors');
+const button3 = document.getElementById('Scissors');
 
 button3.addEventListener('click', myFunction3);
 
 function myFunction3 () {
     playerSelection = button3.textContent;
-    console.log(playerSelection);
+    round();
 }
 
 
-var div = document.createElement('div');
 
 
-/*
-button1.addEventListener("click", myFunction);
-
-function myFunction() {
-  alert ("Hello World!");
-}
-
-*/
