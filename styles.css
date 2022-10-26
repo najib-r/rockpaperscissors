@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin:0;
+    padding: 0;
+}
+
+#header {
+    background-color:darkmagenta;
+    width: 100%;
+    text-align: center;
+
+}
+
+.button {
+    width: 100px;
+    height: 90px;
+    border:0;
+    border-radius: 50px;
+    box-shadow: 0px 0px 1px 1px rgb(0,0,0);
+}
+
+.button:hover {
+    background-color:#F5F5DC;
+    transition: 0.3s;
+}
+
+.button:active {
+    background-color: #FFFFF6;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+    transition: 0s;   
+}
+
+#line {
+    display: flex;
+    gap:45px;
+    padding:50px;
+}
+
+#scores {
+    display:flex;
+    gap:70px;
+    font-size: 72px;
+    padding-bottom: 20px;
+}
+
+#playerScore, 
+#computerScore {
+    width: 170px;
+    height:150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+}
+
+#playerScore {
+    background-color: blue;
+}
+
+#computerScore {
+    background-color: red;
+}

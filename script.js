@@ -63,6 +63,83 @@ function playRound(playerSelection, computerSelection) {
 let playerScore = 0;
 let computerScore = 0;
 
+const div = document.getElementById("demo");
+
+function round() {
+    let computerSelection = getComputerChoice();
+    if (playRound(playerSelection, computerSelection) === 0) {       
+        div.innerHTML += `You lose. ${computerSelection} beats ${playerSelection}`;
+        computerScore++;
+        linebreak = document.createElement("br");
+        div.appendChild(linebreak);
+    }
+    else if (playRound(playerSelection, computerSelection) === 1) {
+        div.innerHTML += `Draw. ${playerSelection} and ${computerSelection}`;
+        linebreak = document.createElement("br");
+        div.appendChild(linebreak);
+    }
+    else if (playRound(playerSelection, computerSelection) === 2) {  
+        div.innerHTML += `You win! ${playerSelection} beats ${computerSelection}`;
+        playerScore++;
+        linebreak = document.createElement("br");
+        div.appendChild(linebreak);
+    }
+
+    if (playerScore === 5 || computerScore === 5) {
+        if (playerScore > computerScore) {
+            alert("You won by reaching 5 points! Points reset to 0.");
+            div.innerHTML = "";
+            playerScore = 0;
+            computerScore = 0;
+            refreshScore();
+        }
+        else {
+            alert("Computer reached 5 points. You lose. Points reset to 0.");
+            div.innerHTML = "";
+            playerScore = 0;
+            computerScore = 0;
+            refreshScore();
+
+        }
+    }
+}
+
+const button1 = document.getElementById('Rock');
+
+button1.addEventListener('click', myFunction);
+
+function myFunction () {
+    playerSelection = button1.textContent;
+    round();
+    refreshScore();
+}
+
+const button2 = document.getElementById('Paper');
+
+button2.addEventListener('click', myFunction2);
+
+function myFunction2 () {
+    playerSelection = button2.textContent;
+    round();
+    refreshScore();
+}
+
+const button3 = document.getElementById('Scissors');
+
+button3.addEventListener('click', myFunction3);
+
+function myFunction3 () {
+    playerSelection = button3.textContent;
+    round();
+    refreshScore();
+}
+
+function refreshScore () {
+    document.getElementById('playerScore').innerHTML = playerScore;
+    document.getElementById('computerScore').innerHTML = computerScore;
+}
+
+
 /*
 function game() {
     for (let i = 0; i < 5; i++) {
@@ -91,69 +168,6 @@ function game() {
 
 game();
 */ 
-const div = document.getElementById("demo");
-
-function round() {
-    let computerSelection = getComputerChoice();
-    if (playRound(playerSelection, computerSelection) === 0) {
-        computerScore++;
-        div.innerHTML += `You lose. ${computerSelection} beats ${playerSelection}`
-        linebreak = document.createElement("br");
-        div.appendChild(linebreak);
-    }
-    else if (playRound(playerSelection, computerSelection) === 1) {
-        div.innerHTML += `Draw. ${playerSelection} and ${computerSelection}`;
-        linebreak = document.createElement("br");
-        div.appendChild(linebreak);
-    }
-    else if (playRound(playerSelection, computerSelection) === 2) {
-        playerScore++;
-        div.innerHTML += `You win! ${playerSelection} beats ${computerSelection}`;
-        linebreak = document.createElement("br");
-        div.appendChild(linebreak);
-    }
-
-    if (playerScore === 5 || computerScore === 5) {
-        if (playerScore > computerScore) {
-            div.innerHTML += "You won by reaching 5 points! Points reset to 0.";
-            playerScore = 0;
-            computerScore = 0;
-        }
-        else {
-            div.innerHTML += "Computer reached 5 points. You lose. Points reset to 0.";
-            playerScore = 0;
-            computerScore = 0;
-        }
-    }
-}
-
-const button1 = document.getElementById('Rock');
-
-button1.addEventListener('click', myFunction);
-
-function myFunction () {
-    playerSelection = button1.textContent;
-    round();
-}
-
-const button2 = document.getElementById('Paper');
-
-button2.addEventListener('click', myFunction2);
-
-function myFunction2 () {
-    playerSelection = button2.textContent;
-    round();
-}
-
-const button3 = document.getElementById('Scissors');
-
-button3.addEventListener('click', myFunction3);
-
-function myFunction3 () {
-    playerSelection = button3.textContent;
-    round();
-}
-
 
 
 
